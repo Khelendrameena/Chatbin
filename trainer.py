@@ -1,3 +1,4 @@
+import torch
 import torch.optim as optim
 import json
 with open('data.txt','r') as file:
