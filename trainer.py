@@ -15,3 +15,5 @@ for epoch in range(2):
         if (epoch+1) % 2 == 0:
             print(f'Epoch [{epoch+1}/{10}], Loss: {loss.item():.4f}')
         print(torch.tensor(lables))
+
+torch.save(model.state_dict,'/result')
