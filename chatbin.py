@@ -15,6 +15,6 @@ def chatbin(t,qus):
     ans = ' '.join(out)
     print(ans)
   else:
-    out,sof = mod.model(qustion.split(),["start","end"],q_len)
+    out,sof = mod.model(qus.split(),["start","end"],q_len)
     ans = ' '.join(out)
     print(ans)
