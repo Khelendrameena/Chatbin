@@ -1,7 +1,7 @@
 import torch
 import torch.optim as optim
 import json
-with open('data.txt','r') as file:
+with open('vocab.txt','r') as file:
     data = json.load(file)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.1)
