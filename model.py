@@ -224,7 +224,7 @@ class tersformer(nn.Module):
 
         return ans,sof
 #end
-with open('data.txt','r') as file:
+with open('vocab.txt','r') as file:
 	vocab_data = file.read()
 
 vocab_data_1 = list(set(vocab_data.split()))
