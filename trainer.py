@@ -10,7 +10,7 @@ optimizer = optim.Adam(model.model.parameters(), lr=0.1)
 for epoch in range(2):
     for qus,ans in data:
         out,sof = model.model(qus.split(),["start","end"])
-        lables = [vocab[ans.split()[i]] for i in range(len(out))]
+        lables = [model.vocab[ans.split()[i]] for i in range(len(out))]
         loss = criterion(torch.stack(sof),torch.tensor(lables))
         optimizer.zero_grad()
         loss.backward()
