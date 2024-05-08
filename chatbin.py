@@ -12,6 +12,6 @@ model = tersformer(d_model,n_head,n_layers,drop_prob,vocab,ffn_hidden)
 
 model.load_state_dict(state_dict)
 
-out,sof = model(qustion.split(),["start","end"])
+out,sof = model(qustion.split(),["start","end"],q_len)
 ans = ' '.join(out)
 print(ans)
