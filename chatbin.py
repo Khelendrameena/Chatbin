@@ -1,3 +1,4 @@
+import torch
 qus = "hay hello how are you"
 d_model = 512
 n_head = 8
