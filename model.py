@@ -206,12 +206,12 @@ class tersformer(nn.Module):
 
         self.decoder = Decoder(d_model,ffn_hidden,vocab,n_head,drop_prob,n_layers)
 
-    def forward(self,x,sos_token):
+    def forward(self,x,sos_token,a_len):
         src = self.encoder(x)
         trg = [sos_token[0]]
         ans = []
         sof = []
-        for i in range(10):
+        for i in range(a_len):
             out = self.decoder(trg,src)
             out = torch.softmax(out,dim=1)
             sof.append(torch.mul(out[0],5e-9))
