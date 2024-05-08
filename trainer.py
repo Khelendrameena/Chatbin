@@ -9,7 +9,7 @@ criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.model.parameters(), lr=0.1)
 for epoch in range(2):
     for qus,ans in data:
-        out,sof = model.model(qus.split(),["start","end"])
+        out,sof = model.model(qus.split(),["start","end"],len(ans.split()))
         lables = [model.vocab[ans.split()[i]] for i in range(len(out))]
         loss = criterion(torch.stack(sof),torch.tensor(lables))
         optimizer.zero_grad()
