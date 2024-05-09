@@ -8,7 +8,7 @@ n_layers = 6
 
 def chatbin(t,qus,q_len):
   if t == "train":
-    model = mod.model
+    model = mod.tersformer(d_model,n_head,n_layers,drop_prob,vocab,ffn_hidden)
     model.load_state_dict(torch.load('model.pt'))
     model.eval()
     out,sof = mod.model(qus.split(),["start","end"],q_len)
