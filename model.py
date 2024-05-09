@@ -244,7 +244,7 @@ def trainer(lr,epochs):
     with open('data.json','r') as file:
         data = json.load(file)
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.model.parameters(), lr=0.1)
+    optimizer = optim.Adam(model.parameters(), lr=0.1)
     for epoch in range(epochs):
        for qus,ans in data:
            out,sof = model(qus.split(),["start","end"],len(ans.split()))
