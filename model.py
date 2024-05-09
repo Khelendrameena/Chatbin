@@ -3,6 +3,7 @@ import torch
 import torch.nn as nn
 import json
 import torch.optim as optim
+import numpy
 
 seed = 42
 torch.manual_seed(seed)
