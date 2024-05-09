@@ -257,6 +257,9 @@ def trainer(lr,epochs):
     torch.save(model.state_dict(),'model.pt')
      
 def chatbin(t,qus,q_len):
+  torch.manual_seed(seed)
+  np.random.seed(seed)
+  random.seed(seed)
   if t == "train": 
     model_train = tersformer(d_model,n_head,n_layers,drop_prob,vocab,ffn_hidden)
     model_train.load_state_dict(torch.load('model.pt'))
