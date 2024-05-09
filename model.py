@@ -258,7 +258,7 @@ def trainer(lr,epochs):
      
 def chatbin(t,qus,q_len):
   if t == "train": 
-    model_train = tersformer(d_model,n_head,n_layers,drop_prob,mod.vocab,ffn_hidden)
+    model_train = tersformer(d_model,n_head,n_layers,drop_prob,vocab,ffn_hidden)
     model_train.load_state_dict(torch.load('model.pt'))
     out,sof = model_train(qus.split(),["start","end"],q_len)
     ans = ' '.join(out)
