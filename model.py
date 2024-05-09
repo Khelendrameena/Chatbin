@@ -4,6 +4,11 @@ import torch.nn as nn
 import json
 import torch.optim as optim
 
+seed = 42
+torch.manual_seed(seed)
+np.random.seed(seed)
+random.seed(seed)
+
 #position encoding
 class position_1:
 		def __init__(self,d_model,vocab):
