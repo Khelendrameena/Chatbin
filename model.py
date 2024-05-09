@@ -4,6 +4,7 @@ import torch.nn as nn
 import json
 import torch.optim as optim
 import numpy as np
+import random
 
 seed = 42
 torch.manual_seed(seed)
