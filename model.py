@@ -240,23 +240,21 @@ n_layers = 6
 
 model = tersformer(d_model,n_head,n_layers,drop_prob,vocab,ffn_hidden)
 
-def trainer():
+def trainer(lr,epochs):
     with open('data.json','r') as file:
         data = json.load(file)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.model.parameters(), lr=0.1)
-    for epoch in range(2):
+    for epoch in range(epochs):
        for qus,ans in data:
-           out,sof = model.model(qus.split(),["start","end"],len(ans.split()))
+           out,sof = model(qus.split(),["start","end"],len(ans.split()))
            lables = [model.vocab[ans.split()[i]] for i in range(len(out))]
            loss = criterion(torch.stack(sof),torch.tensor(lables))
            optimizer.zero_grad()
            loss.backward()
            optimizer.step()
-           if (epoch+1) % 2 == 0:
-               print(f'Epoch [{epoch+1}/{10}], Loss: {loss.item():.4f}')
-           print(torch.tensor(lables))
-    torch.save(model.model.state_dict(),'model.pt')
+           print(f'Epoch [{epoch+1}/{epochs}], Loss: {loss.item():.4f}')
+    torch.save(model.state_dict(),'model.pt')
      
 def chatbin(t,qus,q_len):
   if t == "train": 
