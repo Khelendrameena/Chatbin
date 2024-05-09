@@ -248,7 +248,7 @@ def trainer(lr,epochs):
     for epoch in range(epochs):
        for qus,ans in data:
            out,sof = model(qus.split(),["start","end"],len(ans.split()))
-           lables = [model.vocab[ans.split()[i]] for i in range(len(out))]
+           lables = [vocab[ans.split()[i]] for i in range(len(out))]
            loss = criterion(torch.stack(sof),torch.tensor(lables))
            optimizer.zero_grad()
            loss.backward()
