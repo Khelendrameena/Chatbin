@@ -26,9 +26,9 @@ pad_idx = sp.pad_id()
 sos_idx = sp.bos_id()
 eos_idx = sp.eos_id()
 
-# Positional Encoding
+# Positional Encoding (Updated max_len)
 class PositionalEncoding(nn.Module):
-    def __init__(self, d_model, max_len=512):
+    def __init__(self, d_model, max_len=528):  # Increased max_len to match the error
         super().__init__()
         pe = torch.zeros(max_len, d_model)
         position = torch.arange(0, max_len).unsqueeze(1)
@@ -59,6 +59,11 @@ class TransformerChatbot(nn.Module):
     def forward(self, src, trg):
         src, trg = self.embedding(src), self.embedding(trg)
         src, trg = self.pos_enc(src), self.pos_enc(trg)
+
+        # Fix tensor size issue
+        src = src[:, :512]  # Ensure src length is max 512
+        trg = trg[:, :512]  # Ensure trg length is max 512
+
         memory = self.encoder(src)
         output = self.decoder(trg, memory)
         return self.out(output)
@@ -82,6 +87,10 @@ def train_model(epochs=10):
             src = torch.tensor(sp.encode(qus, out_type=int), dtype=torch.long).unsqueeze(0).to(device)
             trg = torch.tensor([sos_idx] + sp.encode(ans, out_type=int) + [eos_idx], dtype=torch.long).unsqueeze(0).to(device)
 
+            # Fix tensor size issue
+            src = src[:, :512]  # Ensure src length is max 512
+            trg = trg[:, :512]  # Ensure trg length is max 512
+
             optimizer.zero_grad()
             output = model(src, trg[:, :-1])  # Exclude last token from target
 
@@ -98,8 +107,12 @@ def train_model(epochs=10):
 def beam_search(src, max_len=50, beam_width=5):
     model.eval()
     src = torch.tensor(sp.encode(src, out_type=int), dtype=torch.long).unsqueeze(0).to(device)
+
+    # Fix tensor size issue
+    src = src[:, :512]  # Ensure src length is max 512
+
     memory = model.encoder(model.embedding(src))
-    
+
     sequences = [[sos_idx]]
     scores = [0]
 
