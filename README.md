@@ -1,6 +1,4 @@
-Here's the `README.md` file for your Chatbin repository:  
-
----
+#chatbin
 
 ```md
 # Chatbin - AI Conversational Model  
