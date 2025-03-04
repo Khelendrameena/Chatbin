@@ -1,4 +1,4 @@
-#chatbin
+<h1>Chatbin</h1>
 
 ```md
 # Chatbin - AI Conversational Model  
