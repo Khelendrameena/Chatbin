@@ -41,8 +41,7 @@ You can start a conversation using:
 ```python
 import model as chat
 
-response = chat.chatbin("Hello, how are you?")
-print(response)
+chat.chatbin("Hello, how are you?",10)
 ```
 
 ### 🔹 Training the Model  
@@ -56,13 +55,13 @@ Adjust the number of epochs as needed.
 Ensure your dataset (e.g., `custom_dataset.json`) is properly formatted:  
 ```json
 [
-    {"input": "Hello!", "response": "Hi there!"},
-    {"input": "What's up?", "response": "Not much, just chatting with you!"}
+    ["input": "Hello!", "response": "Hi there!"],
+    ["input": "What's up?", "response": "Not much, just chatting with you!"]
 ]
 ```
 Then run:  
 ```python
-chat.chatbin("train", dataset="custom_dataset.json", epochs=5)
+chat.chatbin("train", epochs=5)
 ```
 
 ---
