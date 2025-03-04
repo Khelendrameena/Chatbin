@@ -139,9 +139,9 @@ def beam_search(src, max_len=50, beam_width=5):
     return sp.decode(best_seq[1:])  # Remove SOS token
 
 # Chatbot Function
-def chatbin(mode="train", qus=None, q_len=None):
+def chatbin(mode="train", qus=None, q_len=None,epochs):
     if mode == "train":
-        train_model(epochs=5)
+        train_model(epochs=epochs)
     else:
         model.load_state_dict(torch.load("chatbot_model.pth"))
         model.eval()
